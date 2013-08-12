@@ -1,0 +1,16 @@
+test <br />
+{TEST_VAR}<br />
+
+<!-- INCLUDE simple2.html -->
+
+<!-- IF TEST -->{TIME}a<!-- ENDIF -->
+<!-- IF not TEST -->{TIME}b<!-- ENDIF -->
+<!-- IF TEST and .block -->{TIME}c<!-- ENDIF -->
+<!-- IF not TEST and .block -->{TIME}d<!-- ENDIF -->
+
+<br /><br /><br /><br /><br />
+
+<!-- BEGIN block -->
+{block.TEST1}
+{block.TEST2}
+<!-- END block -->
