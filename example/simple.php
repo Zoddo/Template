@@ -1,6 +1,6 @@
 <?php
 
-require_once 'template.class.php';
+require_once '../template.class.php';
 
 $tpl = new Template('test', './templates/');
 
