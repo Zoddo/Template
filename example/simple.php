@@ -2,7 +2,7 @@
 
 require_once 'template.class.php';
 
-$tpl = new Template('test', './tpl/');
+$tpl = new Template('test', './template/');
 
 $tpl->assign_vars(array(
 	'TEST_VAR'	=> '$value',
@@ -22,7 +22,7 @@ $tpl->block_assign_vars('block', array(
 ));
 
 $tpl->set_name(array(
-	'test'	=> 'test.html',
+	'test'	=> 'simple.html',
 ));
 
 $tpl->display('test');
