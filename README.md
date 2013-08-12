@@ -1,4 +1,0 @@
-Template
-========
-
-HTML Template système
