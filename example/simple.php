@@ -22,7 +22,7 @@ $tpl->block_assign_vars('block', array(
 ));
 
 $tpl->set_name(array(
-	'test'	=> 'simple.html',
+	'test'	=> 'simple1.html',
 ));
 
 $tpl->display('test');
