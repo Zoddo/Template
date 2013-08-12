@@ -2,7 +2,7 @@
 
 require_once 'template.class.php';
 
-$tpl = new Template('test', './template/');
+$tpl = new Template('test', './templates/');
 
 $tpl->assign_vars(array(
 	'TEST_VAR'	=> '$value',
