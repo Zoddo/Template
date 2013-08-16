@@ -42,7 +42,7 @@ class Template
 		return true;
 	}
 
-	//Pour assigner un block de variables dans le système de template
+	//Pour assigner un bloc de variables dans le système de template
 	public function block_assign_vars($block, array $vars)
 	{
 		if(!isset($this->_bvars[$block]))
@@ -122,8 +122,8 @@ class Template
 		$tpl_data = preg_replace('#<!-- ENDIF -->#U', '<?php }?>', $tpl_data);
 
 		$tpl_data = preg_replace('#<!-- BEGIN ([a-zA-Z0-9._-]+) -->#U', '<?php $_$1_count=(isset($this->_bvars[\'$1\'])) ? sizeof($this->_bvars[\'$1\']) : 0;if ($_$1_count){for($_$1_i = 0; $_$1_i < $_$1_count; ++$_$1_i){$_$1_val=$this->_bvars[\'$1\'][$_$1_i];?>', $tpl_data);
-		$tpl_data = preg_replace_callback('#<!-- BEGIN ?ELSE ?IF (.*?)? -->#', array($this, '_tpl_compile_elseif'), $tpl_data);
-		$tpl_data = preg_replace('#<!-- BEGIN ?ELSE -->#U', '<?php }}else{?>', $tpl_data);
+		$tpl_data = preg_replace_callback('#<!-- BEGIN ?ELSE ?IF (.*?)? -->#', array($this, '_tpl_compile_beginelseif'), $tpl_data);
+		$tpl_data = preg_replace('#<!-- BEGIN ?ELSE -->#U', '<?php }}else{{?>', $tpl_data);
 		$tpl_data = preg_replace('#<!-- END ([a-zA-Z0-9._-]+) -->#U', '<?php }}?>', $tpl_data);
 
 		$tpl_data = str_replace('?><?php ', '', $tpl_data);
