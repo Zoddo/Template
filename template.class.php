@@ -7,9 +7,9 @@ class Template
 {
 	public $data = array();
 
-	private $_vars = array();
-	private $_bvars = array();
-	private $_files = array();
+	protected $_vars = array();
+	protected $_bvars = array();
+	protected $_files = array();
 
 	//Constructeur
 	public function __construct($name, $dir)
@@ -70,7 +70,7 @@ class Template
 		return $state;
 	}
 
-	private function _tpl_load($name)
+	protected function _tpl_load($name)
 	{
 		$in_tpl_sys = true;
 
@@ -94,7 +94,7 @@ class Template
 		return true;
 	}
 
-	private function _tpl_compile($name)
+	protected function _tpl_compile($name)
 	{
 		if(!is_readable($this->data['dir'].$name))
 		{
@@ -130,7 +130,7 @@ class Template
 		return preg_replace('#\?\>([\r\n])#', '?>\1\1', $tpl_data);
 	}
 
-	private function _tpl_cache($name, $data)
+	protected function _tpl_cache($name, $data)
 	{
 		if(!is_writable($this->data['cache']))
 		{
@@ -142,7 +142,7 @@ class Template
 		return true;
 	}
 
-	private function _tpl_include($name)
+	protected function _tpl_include($name)
 	{
 		if(array_key_exists($name, $this->_files))
 		{
@@ -156,7 +156,7 @@ class Template
 	 * Fonction qui permet de compiler les tags-variables.
 	 * Basé sur la fonction Template::compile_var_tags() de phpBB 3.0.11
 	 */
-	private function _compile_var_tags($text_blocks)
+	protected function _compile_var_tags($text_blocks)
 	{
 		$text_blocks = $text_blocks[0];
 
@@ -189,7 +189,7 @@ class Template
 	 *
 	 * Basé sur la fonction Template::generate_block_varref() de phpBB 3.0.11
 	 */
-	private function _generate_block_varref($namespace, $varname, $echo = true, $defop = false)
+	protected function _generate_block_varref($namespace, $varname, $echo = true, $defop = false)
 	{
 		// Strip the trailing period.
 		$namespace = substr($namespace, 0, -1);
@@ -209,7 +209,7 @@ class Template
 	 * Fonction qui permet de compiler les tag IF et ELSEIF.
 	 * Basé sur la fonction Template::compile_tag_if() de phpBB 3.0.11
 	 */
-	private function _tpl_compile_if(array $tag_args, $elseif = false)
+	protected function _tpl_compile_if(array $tag_args, $elseif = false)
 	{
 		// Tokenize args for 'if' tag.
 		preg_match_all('/(?:
@@ -362,12 +362,12 @@ class Template
 		return '<?php '.(($elseif) ? '}elseif(' : 'if(') . (implode(' ', $tokens) . '){').'?>';
 	}
 
-	private function _tpl_compile_elseif($tag_args)
+	protected function _tpl_compile_elseif($tag_args)
 	{
 		return $this->_tpl_compile_if($tag_args, true);
 	}
 
-	private function _tpl_compile_beginelseif($tag_args)
+	protected function _tpl_compile_beginelseif($tag_args)
 	{
 		return str_replace('}elseif(', '}}elseif(', $this->_tpl_compile_if($tag_args, true));
 	}
@@ -375,7 +375,7 @@ class Template
 	/*
 	 * Basé sur la fonction Template::_parse_is_expr() de phpBB 3.0.11
 	 */
-	private function _parse_is_expr($is_arg, $tokens)
+	protected function _parse_is_expr($is_arg, $tokens)
 	{
 		$expr_end = 0;
 		$negate_expr = false;
@@ -445,7 +445,7 @@ class Template
 	 *
 	 * Basé sur la fonction Template::generate_block_data_ref() de phpBB 3.0.11
 	 */
-	private function _generate_block_data_ref($blockname, $include_last_iterator, $defop = false)
+	protected function _generate_block_data_ref($blockname, $include_last_iterator, $defop = false)
 	{
 		// Get an array of the blocks involved.
 		$blocks = explode('.', $blockname);
