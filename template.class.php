@@ -5,25 +5,27 @@
  */
 class Template
 {
+	// Declaring core variables
+		
 	public $data = array();
 
 	protected $_vars = array();
 	protected $_bvars = array();
 	protected $_files = array();
 
-	//Constructeur
+	// Constructor
 	public function __construct($name, $dir)
 	{
-		//CONFIGURATION ICI - CONFIGURATION HIS HERE
+		// CONFIGURATION HIS HERE
 		$this->data['cache'] = __DIR__.'/cache/';
-		//FIN DE CONFIGURATION - END CONFIGURATION
+		// END CONFIGURATION
 
-		//Réglage des variables de base
+		// Setting core variables
 		$this->data['name'] = $name;
 		$this->data['dir'] = $dir;
 	}
 
-	//Pour assigner une variable dans le système de template
+	// Assign a variable in the template system
 	public function assign_var($name, $value)
 	{
 		$this->_vars[$name] = $value;
@@ -31,7 +33,7 @@ class Template
 		return true;
 	}
 
-	//Pour assigner des variables dans le système de template
+	// Assign variables in the template system
 	public function assign_vars(array $vars)
 	{
 		foreach ($vars as $name => $value)
@@ -42,7 +44,7 @@ class Template
 		return true;
 	}
 
-	//Pour assigner un bloc de variables dans le système de template
+	// Assign a block of variables in the template system
 	public function block_assign_vars($block, array $vars)
 	{
 		if(!isset($this->_bvars[$block]))
@@ -87,7 +89,7 @@ class Template
 		}
 		else
 		{
-			//echo $tpl_data;
+			// echo $tpl_data;
 			eval('?>'.$tpl_data);
 		}
 
@@ -187,7 +189,7 @@ class Template
 	 * block namespace. This is a string of the form:
 	 * ' . $this->_tpldata['parent'][$_parent_i]['$child1'][$_child1_i]['$child2'][$_child2_i]...['varname'] . '
 	 *
-	 * Basé sur la fonction Template::generate_block_varref() de phpBB 3.0.11
+	 * Based on function Template::generate_block_varref() of phpBB 3.0.11
 	 */
 	protected function _generate_block_varref($namespace, $varname, $echo = true, $defop = false)
 	{
@@ -206,8 +208,8 @@ class Template
 	}
 
 	/*
-	 * Fonction qui permet de compiler les tag IF et ELSEIF.
-	 * Basé sur la fonction Template::compile_tag_if() de phpBB 3.0.11
+	 * Compile the tags IF and ELSEIF.
+	 * Based on function Template::compile_tag_if() of phpBB 3.0.11
 	 */
 	protected function _tpl_compile_if(array $tag_args, $elseif = false)
 	{
@@ -373,7 +375,7 @@ class Template
 	}
 
 	/*
-	 * Basé sur la fonction Template::_parse_is_expr() de phpBB 3.0.11
+	 * Based on function Template::_parse_is_expr() of phpBB 3.0.11
 	 */
 	protected function _parse_is_expr($is_arg, $tokens)
 	{
@@ -443,7 +445,7 @@ class Template
 	 * (possibly nested) block namespace. This is a string of the form:
 	 * $this->_bvars['parent'][$_parent_i]['$child1'][$_child1_i]['$child2'][$_child2_i]...['$childN']
 	 *
-	 * Basé sur la fonction Template::generate_block_data_ref() de phpBB 3.0.11
+	 * Based on function Template::generate_block_data_ref() of phpBB 3.0.11
 	 */
 	protected function _generate_block_data_ref($blockname, $include_last_iterator, $defop = false)
 	{
