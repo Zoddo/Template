@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Système de template
+ * Template system
  */
 class Template
 {
