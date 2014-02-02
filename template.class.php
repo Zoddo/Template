@@ -100,7 +100,7 @@ class Template
 	{
 		if(!is_readable($this->data['dir'].$name))
 		{
-			trigger_error($this->data['dir'].$name.' is not found or not readable', E_USER_ERROR);
+			trigger_error('Template->_tpl_compile(): File '.$this->data['dir'].$name.' is not found or not readable', E_USER_ERROR);
 		}
 
 		$tpl_data = file_get_contents($this->data['dir'].$name);
@@ -108,7 +108,7 @@ class Template
 		if(preg_match('#<\?(php)?.+\?>#isU', $tpl_data))
 		{
 			$tpl_data = preg_replace('#<\?(php)?.+\?>#isU', '', $tpl_data);
-			trigger_error('PHP code has been detected in the template and was removed during the compilation', E_USER_WARNING);
+			trigger_error('Template->_tpl_compile(): PHP code has been detected in the template and was removed during the compilation', E_USER_WARNING);
 		}
 
 		$tpl_data = '<?php if(!isset($in_tpl_sys))exit;?>'.$tpl_data;
