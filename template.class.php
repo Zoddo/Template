@@ -45,6 +45,13 @@ class Template
 
 		return true;
 	}
+	
+	public function destroy_var($name)
+	{
+		unset($this->_vars[$name]);
+		
+		return true;
+	}
 
 	// Assign a block of variables in the template system
 	public function block_assign_vars($block, array $vars)
@@ -107,6 +114,32 @@ class Template
 			$this->_bvars[$block][] = $vars;
 		}
 
+		return true;
+	}
+	
+	public function destroy_block_vars($block)
+	{
+		if (strpos($block, '.') !== false)
+		{
+			// Nested block.
+			$blocks = explode('.', $block);
+			$blockcount = sizeof($blocks) - 1;
+		
+			$str = &$this->_bvars;
+			for ($i = 0; $i < $blockcount; $i++)
+			{
+				$str = &$str[$blocks[$i]];
+				$str = &$str[sizeof($str) - 1];
+			}
+		
+			unset($str[$blocks[$blockcount]]);
+		}
+		else
+		{
+			// Top-level block.
+			unset($this->_bvars[$block]);
+		}
+		
 		return true;
 	}
 
