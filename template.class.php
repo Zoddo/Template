@@ -6,7 +6,7 @@
 class Template
 {
 	// Declaring core variables
-		
+
 	public $data = array();
 
 	protected $_vars = array();
@@ -156,7 +156,6 @@ class Template
 
 	/*
 	 * Fonction qui permet de compiler les tags-variables.
-	 * Basé sur la fonction Template::compile_var_tags() de phpBB 3.0.11
 	 */
 	protected function _compile_var_tags($text_blocks)
 	{
@@ -188,8 +187,6 @@ class Template
 	 * Generates a reference to the given variable inside the given (possibly nested)
 	 * block namespace. This is a string of the form:
 	 * ' . $this->_tpldata['parent'][$_parent_i]['$child1'][$_child1_i]['$child2'][$_child2_i]...['varname'] . '
-	 *
-	 * Based on function Template::generate_block_varref() of phpBB 3.0.11
 	 */
 	protected function _generate_block_varref($namespace, $varname, $echo = true, $defop = false)
 	{
@@ -209,7 +206,6 @@ class Template
 
 	/*
 	 * Compile the tags IF and ELSEIF.
-	 * Based on function Template::compile_tag_if() of phpBB 3.0.11
 	 */
 	protected function _tpl_compile_if(array $tag_args, $elseif = false)
 	{
@@ -374,9 +370,6 @@ class Template
 		return str_replace('}elseif(', '}}elseif(', $this->_tpl_compile_if($tag_args, true));
 	}
 
-	/*
-	 * Based on function Template::_parse_is_expr() of phpBB 3.0.11
-	 */
 	protected function _parse_is_expr($is_arg, $tokens)
 	{
 		$expr_end = 0;
@@ -444,8 +437,6 @@ class Template
 	 * Generates a reference to the array of data values for the given
 	 * (possibly nested) block namespace. This is a string of the form:
 	 * $this->_bvars['parent'][$_parent_i]['$child1'][$_child1_i]['$child2'][$_child2_i]...['$childN']
-	 *
-	 * Based on function Template::generate_block_data_ref() of phpBB 3.0.11
 	 */
 	protected function _generate_block_data_ref($blockname, $include_last_iterator, $defop = false)
 	{
