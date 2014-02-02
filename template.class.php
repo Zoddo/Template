@@ -117,12 +117,17 @@ class Template
 		return true;
 	}
 
-	public function display($name)
+	public function generate($name)
 	{
 		ob_start();
-		$state = $this->_tpl_load($this->_files[$name]);
-		ob_end_flush();
-		return $state;
+		$this->_tpl_load($this->_files[$name]);
+		return ob_get_clean();
+	}
+	
+	public function display($name)
+	{
+		echo $this->generate($name);
+		return true;
 	}
 
 	protected function _tpl_load($name)
