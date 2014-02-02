@@ -55,7 +55,7 @@ class Template
 			$blocks = explode('.', $block);
 			$blockcount = sizeof($blocks) - 1;
 
-			$str = &$this->_tpldata;
+			$str = &$this->_bvars;
 			for ($i = 0; $i < $blockcount; $i++)
 			{
 				$str = &$str[$blocks[$i]];
@@ -87,7 +87,7 @@ class Template
 		else
 		{
 			// Top-level block.
-			$s_row_count = (isset($this->_tpldata[$block])) ? sizeof($this->_tpldata[$block]) : 0;
+			$s_row_count = (isset($this->_bvars[$block])) ? sizeof($this->_bvars[$block]) : 0;
 			$vars['S_ROW_COUNT'] = $s_row_count;
 
 			// Assign S_FIRST_ROW
@@ -100,11 +100,11 @@ class Template
 			$vars['S_LAST_ROW'] = true;
 			if ($s_row_count > 0)
 			{
-				unset($this->_tpldata[$block][($s_row_count - 1)]['S_LAST_ROW']);
+				unset($this->_bvars[$block][($s_row_count - 1)]['S_LAST_ROW']);
 			}
 
 			// Add a new iteration to this block with the variable assignments we were given.
-			$this->_tpldata[$block][] = $vars;
+			$this->_bvars[$block][] = $vars;
 		}
 
 		return true;
