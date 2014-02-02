@@ -553,7 +553,7 @@ class Template
 		$tag_template_php .= 'for ($_' . $tag_args . '_i = ' . $loop_start . '; $_' . $tag_args . '_i < ' . $loop_end . '; ++$_' . $tag_args . '_i){';
 		$tag_template_php .= '$_'. $tag_args . '_val = &' . $varref . '[$_'. $tag_args. '_i];';
 
-		return $tag_template_php;
+		return '<?php ' . $tag_template_php . '?>';
 	}
 
 	protected function _tpl_compile_beginelseif($tag_args)
