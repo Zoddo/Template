@@ -459,6 +459,7 @@ class Template
 	protected function _tpl_compile_begin($tag_args)
 	{
 		$no_nesting = false;
+		$tag_args = $tag_args[1];
 
 		// Is the designer wanting to call another loop in a loop?
 		if (strpos($tag_args, '!') === 0)
