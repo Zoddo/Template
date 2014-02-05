@@ -220,6 +220,10 @@ class Template
 		$tpl_data = preg_replace('#<!-- END ([a-zA-Z0-9._-]+) -->#U', '<?php }}?>', $tpl_data);
 
 		$tpl_data = str_replace('?><?php ', '', $tpl_data);
+		
+		// Reset
+		$this->block_names = array();
+		
 		return preg_replace('#\?\>([\r\n])#', '?>\1\1', $tpl_data);
 	}
 
