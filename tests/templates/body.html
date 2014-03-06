@@ -1,0 +1,16 @@
+<!-- INCLUDE page2 -->
+<!-- INCLUDE page3.html -->
+
+Title: {TITLE}
+Description: {DESC}
+
+<!-- BEGIN block -->
+	Subject: {block.SUBJECT}
+	{block.MESSAGE}
+		<!-- BEGIN sub -->
+			Subject: {block.sub.SUBJECT}
+			{block.sub.MESSAGE}{block.LOOP}
+			<!-- IF not block.sub.S_LAST_ROW -->--<!-- ENDIF -->
+		<!-- END sub -->
+	<!-- IF not block.S_LAST_ROW -->-----------------------------------------------------------------<!-- ENDIF -->
+<!-- END block -->
