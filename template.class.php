@@ -411,6 +411,7 @@ class Template
 					if (preg_match('#^((?:[a-z0-9\-_]+\.)+)?(\$)?(?=[A-Z])([A-Z0-9\-_]+)#s', $token, $varrefs))
 					{
 						$token = (!empty($varrefs[1])) ? $this->_generate_block_data_ref(substr($varrefs[1], 0, -1), true, $varrefs[2]) . '[\'' . $varrefs[3] . '\']' : (($varrefs[2]) ? '$this->_bvars[\'DEFINE\'][\'.\'][\'' . $varrefs[3] . '\']' : '(isset($this->_vars[\'' . $varrefs[3] . '\']) && $this->_vars[\'' . $varrefs[3] . '\'])');
+						$token = '(isset(' . $token . ') && ' . $token . ')';
 					}
 					else if (preg_match('#^\.((?:[a-z0-9\-_]+\.?)+)$#s', $token, $varrefs))
 					{
