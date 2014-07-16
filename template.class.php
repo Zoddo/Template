@@ -214,9 +214,9 @@ class Template
 		$tpl_data = preg_replace('#<!-- ELSE -->#U', '<?php }else{?>', $tpl_data);
 		$tpl_data = preg_replace('#<!-- ENDIF -->#U', '<?php }?>', $tpl_data);
 
-		$tpl_data = preg_replace_callback('#<!-- BEGIN ([a-zA-Z0-9._-]+) -->#U', array($this, '_tpl_compile_begin'), $tpl_data);
 		$tpl_data = preg_replace_callback('#<!-- BEGIN ?ELSE ?IF (.*?)? -->#', array($this, '_tpl_compile_beginelseif'), $tpl_data);
 		$tpl_data = preg_replace('#<!-- BEGIN ?ELSE -->#U', '<?php }}else{{?>', $tpl_data);
+		$tpl_data = preg_replace_callback('#<!-- BEGIN ([a-zA-Z0-9._-]+) -->#U', array($this, '_tpl_compile_begin'), $tpl_data);
 		$tpl_data = preg_replace('#<!-- END ([a-zA-Z0-9._-]+) -->#U', '<?php }}?>', $tpl_data);
 
 		$tpl_data = str_replace('?><?php ', '', $tpl_data);
