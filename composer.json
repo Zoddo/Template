@@ -1,0 +1,16 @@
+{
+  "name": "zoddo/template",
+  "description": "HTML Template system",
+  "keywords": ["HTML", "template", "templating"],
+  "homepage": "https://github.com/Zoddo/Template",
+  "license": "GPLv2",
+  "authors": [
+    {
+      "name": "Zoddo",
+      "email": "zoddo.ino@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.2"
+  }
+}
